@@ -1,0 +1,56 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin and padding */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+blockquote,
+figure,
+figcaption,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%; 
+}
+/* Set default font size and family */
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #32533D;
+}
+
+/* Remove list styles (bullets, numbering) */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove hyperlink styles */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* Remove border on images inside links */
+img {
+  border-style: none;
+}

@@ -1,0 +1,59 @@
+.wrapper {
+  background: #012b39;
+  table {
+    width: 100%;
+    background: #012b39;
+    border-radius: 0.25em;
+    border-collapse: collapse;
+  }
+  th {
+    border-bottom: 1px solid #364043;
+    color: #e2b842;
+    font-size: 0.85em;
+    font-weight: 600;
+    padding: 0.5em 1em;
+    text-align: left;
+
+    span {
+      margin-right: 1rem;
+    }
+
+    button {
+      border: none;
+      background: none;
+      color: inherit;
+      cursor: pointer;
+    }
+  }
+  td {
+    color: #fff;
+    font-weight: 400;
+    padding: 0.65em 1em;
+    position: relative;
+  }
+  .disabled td {
+    color: #4f5f64;
+  }
+
+  img {
+    width: 100px;
+  }
+  tbody tr {
+    transition: background 0.25s ease;
+
+    button {
+      border: none;
+      background: darkred;
+      color: inherit;
+      padding: 1rem;
+      cursor: pointer;
+      &:hover {
+        background-color: red;
+        color: white;
+      }
+    }
+  }
+  tbody tr:hover {
+    background: #014055;
+  }
+}

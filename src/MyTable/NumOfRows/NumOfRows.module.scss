@@ -1,0 +1,28 @@
+.wrapper {
+  max-width: 30rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 2rem;
+
+  .btnsWrapper {
+    button {
+      padding: 1rem;
+      border: none;
+      background-color: white;
+      margin-right: 0.3rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: grey;
+        color: white;
+      }
+    }
+
+    .btnSelected {
+      background-color: green;
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,78 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 60rem;
+  padding: 2rem;
+  .heading {
+    margin-bottom: 3rem;
+    color: black;
+  }
+
+  .errorMsg {
+    color: red !important;
+  }
+  
+  button[type="submit"] {
+    padding: 1rem;
+    margin-left: 40%;
+    margin-top: 30px;
+    background: darkGreen;
+    color: white;
+    border-radius: 0.25em;
+    &:hover {
+      background-color: green;
+      color: white;
+    }
+
+    &:disabled {
+      background-color: grey;
+      cursor: not-allowed;
+    }
+  }
+
+  .addRemoveBtn {
+    margin: 0 3px;
+  }
+
+  .addProdPage {
+    margin-bottom: 5px;
+  }
+
+  .inputWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    input {
+      width: 100%;
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    label {
+      margin-bottom: 1rem;
+      text-transform: capitalize;
+    }
+
+    
+  }
+
+  .inputProdPage {
+    display: flex;
+    justify-content: space-between !important;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    input {
+      width: 100%;
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    label {
+      margin-bottom: 1rem;
+      text-transform: capitalize;
+    }
+  }
+}

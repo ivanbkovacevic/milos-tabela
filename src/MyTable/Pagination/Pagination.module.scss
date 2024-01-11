@@ -1,0 +1,43 @@
+.wrapper {
+  min-width: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 2rem;
+
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      background-color: darkgreen;
+      color: white;
+    }
+    &:active {
+      background-color: green;
+    }
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  .btnsWrapper {
+    margin: 0 2rem;
+    button {
+      padding: 1rem;
+      border: none;
+      background-color: white;
+      margin-right: 0.3rem;
+      &:hover {
+        background-color: grey;
+        color: white;
+      }
+    }
+
+    .pageSelected {
+      background-color: green;
+      color: white;
+    }
+  }
+}

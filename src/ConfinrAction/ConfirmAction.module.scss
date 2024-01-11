@@ -1,0 +1,33 @@
+.wrapper {
+    width: 100%;
+  
+    h2 {
+      padding: 4rem 2rem;
+    }
+    .btnsWrapper {
+      margin: 0 auto;
+      margin-top: 2rem;
+      width: 20rem;
+      button {
+        border: none;
+        background: #012b39;
+        color: white;
+        padding: 1rem 2rem;
+        margin-right: 2rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        &:hover {
+          background-color: green;
+          color: white;
+        }
+      }
+  
+      :first-child {
+        background-color: darkred;
+        &:hover {
+          background-color: red;
+          color: white;
+        }
+      }
+    }
+  }
