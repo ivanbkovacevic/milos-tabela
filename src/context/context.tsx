@@ -38,7 +38,7 @@ const Context = React.createContext<ContextProps>({
 });
 
 function ContextProvider(props: React.PropsWithChildren<{}>) {
-  const [dataDb,setDataDb] = useState({});
+  const [dataDb,setDataDb] = useState<Project[]>([]);
 console.log("datadb", dataDb)
   const [state, setState] = React.useState<ContextState>({
     projectsList: productsParsed,
@@ -176,10 +176,17 @@ console.log("datadb", dataDb)
     const WDProjects = Backendless.Data.of('WDProjects');
     WDProjects.find()
     .then(data => {
-      // const newArr:Project[] = data.map(({created, ...rest}) => {
-      //   return rest;
+     
+      console.log(data)
+      // const convertedData: Project[] = data.map(record => {
+      //   return {
+      //     name: record.name,
+      //     age: record.age,
+      //     city: record.city,
+      //     // ...
+      //   };
       // });
-     setDataDb(data)
+      setDataDb(data)
     })
     .catch(error => {
       console.error('Error retrieving data:', error);

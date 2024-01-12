@@ -10,7 +10,13 @@ export interface Employee {
 }
 
 export interface Project {
-  id?: string;
+  // objectId: string;
+  // ownerId: string;
+  // created: number;
+  // updated: number;
+  // propertyA: null;
+  // propertyB: null;
+  // __class:string;
   name: string;
   productPage: string[];
   articlePage: string[];
