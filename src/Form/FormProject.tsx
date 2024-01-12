@@ -21,33 +21,25 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
     name: Yup.string().required("Name is required"),
     productImg: Yup.string().required("Project image is required"),
     productPage: Yup.array().of(
-      Yup.string()
-        .nullable()
-        .required("Product page is required")
+      Yup.string().nullable().required("Product page is required")
     ),
-    articlePageText: Yup.string().required("Text is required"),
     articlePage: Yup.array().of(
-      Yup.string()
-        .nullable()
-        .required("Article page is required")
+      Yup.string().nullable().required("Article page is required")
     ),
-    htmlEmail: Yup.string().email('Invalid email address')
-    .required('Email address is required'),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email address is required"),
     pageLink: Yup.string().required("Page link is required"),
-    productImgAltText: Yup.string().required(
-      "Project image alt text is required"
-    ),
+   
   });
 
   const initialValues = {
     name: "",
     productImg: "",
     productPage: [""],
-    articlePageText: "",
     articlePage: [""],
-    htmlEmail: "",
+    email: "",
     pageLink: "",
-    productImgAltText: "",
     id: "0",
   };
   const handleFormSubmited = (values: Project, { resetForm }: any) => {
@@ -81,31 +73,13 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
         value: initialValues.productImg,
       },
       {
-        label: "Product image alt Text",
-        id: "productImgAltText",
-        type: "text",
-        required: true,
-        name: "productImgAltText",
-        placeHolder: "some image text",
-        value: initialValues.productImgAltText,
-      },
-      {
-        label: "Article Page text",
-        id: "articlePageText",
-        type: "text",
-        required: true,
-        name: "articlePageText",
-        placeHolder: "This page is something",
-        value: initialValues.articlePageText,
-      },
-      {
         label: "Html Email",
-        id: "htmlEmail",
+        id: "email",
         type: "email",
         required: true,
-        name: "htmlEmail",
+        name: "email",
         placeHolder: "html email",
-        value: initialValues.htmlEmail,
+        value: initialValues.email,
       },
       // {
       //   label: "Product page",
@@ -146,7 +120,11 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
             name={item.name}
             placeholder={item.placeHolder}
           />
-          <ErrorMessage name={item.name} component="div" className={style.errorMsg} />
+          <ErrorMessage
+            name={item.name}
+            component="div"
+            className={style.errorMsg}
+          />
         </div>
       );
     });
@@ -173,7 +151,11 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
           <Form>
             {generateFormFields()}
             <label htmlFor="productPage">Product page</label>
-            <ErrorMessage name="productPage" component="div" className={style.errorMsg} />
+            <ErrorMessage
+              name="productPage"
+              component="div"
+              className={style.errorMsg}
+            />
             <FieldArray
               name="productPage"
               // id="productPage"
@@ -210,7 +192,11 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
             </div> */}
 
             <label htmlFor="articlePage">Article page</label>
-            <ErrorMessage name="articlePage" component="div" className={style.errorMsg} />
+            <ErrorMessage
+              name="articlePage"
+              component="div"
+              className={style.errorMsg}
+            />
             <FieldArray
               name="articlePage"
               // id="articlePage"

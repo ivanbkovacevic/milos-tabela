@@ -13,12 +13,10 @@ export interface Project {
   id?: string;
   name: string;
   productPage: string[];
-  articlePageText: string;
   articlePage: string[];
-  htmlEmail: string;
+  email: string;
   pageLink: string;
   productImg: string;
-  productImgAltText: string;
   [key: string]: any;
 }
 

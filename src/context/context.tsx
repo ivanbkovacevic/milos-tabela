@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import projects from "../projects.json";
 import { SortOrder, SortProperties, Project } from "../constants";
+import Backendless from 'backendless';
+
+
 
 
 const projectsString = JSON.stringify(projects);
@@ -10,10 +13,6 @@ interface ContextState {
   projectsList: Project[];
   selectedProject: Project | null;
 }
-
-const apiKey = process.env.REACT_APP_API_KEY;
-const apiUrl = process.env.REACT_APP_BASE_URL;
-console.log(apiKey,apiUrl)
 
 interface ContextProps {
   state: ContextState;
@@ -39,12 +38,14 @@ const Context = React.createContext<ContextProps>({
 });
 
 function ContextProvider(props: React.PropsWithChildren<{}>) {
+  const [dataDb,setDataDb] = useState({});
+console.log("datadb", dataDb)
   const [state, setState] = React.useState<ContextState>({
     projectsList: productsParsed,
     selectedProject: null,
   });
-
-
+  
+  
   const setProjectsList = (data: Project[]) => {
     setState({
       ...state,
@@ -164,6 +165,26 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
         break;
     }
   };
+
+  useEffect(()=>{
+    if (process.env.REACT_APP_BACKENDLESS_API_ID && process.env.REACT_APP_BACKENDLESS_API_KEY) {
+      Backendless.initApp(process.env.REACT_APP_BACKENDLESS_API_ID, process.env.REACT_APP_BACKENDLESS_API_KEY);
+    } else {
+      console.error("Backendless API ID or API Key is not defined.");
+    }
+    
+    const WDProjects = Backendless.Data.of('WDProjects');
+    WDProjects.find()
+    .then(data => {
+      // const newArr:Project[] = data.map(({created, ...rest}) => {
+      //   return rest;
+      // });
+     setDataDb(data)
+    })
+    .catch(error => {
+      console.error('Error retrieving data:', error);
+    });
+  },[]);
 
   return (
     <Context.Provider
