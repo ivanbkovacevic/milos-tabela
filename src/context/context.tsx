@@ -11,6 +11,10 @@ interface ContextState {
   selectedProject: Project | null;
 }
 
+const apiKey = process.env.REACT_APP_API_KEY;
+const apiUrl = process.env.REACT_APP_BASE_URL;
+console.log(apiKey,apiUrl)
+
 interface ContextProps {
   state: ContextState;
   setProjectsList: (data: Project[]) => void;
