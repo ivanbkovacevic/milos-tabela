@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import projects from "../projects.json";
 import { SortOrder, SortProperties, Project } from "../constants";
-import Backendless from 'backendless';
 
-
-
+import mongoose from "mongoose";
 
 const projectsString = JSON.stringify(projects);
 const productsParsed = JSON.parse(projectsString);
@@ -38,14 +36,13 @@ const Context = React.createContext<ContextProps>({
 });
 
 function ContextProvider(props: React.PropsWithChildren<{}>) {
-  const [dataDb,setDataDb] = useState<Project[]>([]);
-console.log("datadb", dataDb)
+  const [dataDb, setDataDb] = useState<Project[]>([]);
+  console.log("datadb", dataDb);
   const [state, setState] = React.useState<ContextState>({
     projectsList: productsParsed,
     selectedProject: null,
   });
-  
-  
+
   const setProjectsList = (data: Project[]) => {
     setState({
       ...state,
@@ -59,7 +56,6 @@ console.log("datadb", dataDb)
       projectsList: [data, ...state.projectsList],
     });
   };
-
 
   const editProject = (data: Project) => {
     const newList = state.projectsList.map((item: Project) => {
@@ -166,32 +162,7 @@ console.log("datadb", dataDb)
     }
   };
 
-  useEffect(()=>{
-    if (process.env.REACT_APP_BACKENDLESS_API_ID && process.env.REACT_APP_BACKENDLESS_API_KEY) {
-      Backendless.initApp(process.env.REACT_APP_BACKENDLESS_API_ID, process.env.REACT_APP_BACKENDLESS_API_KEY);
-    } else {
-      console.error("Backendless API ID or API Key is not defined.");
-    }
-    
-    const WDProjects = Backendless.Data.of('WDProjects');
-    WDProjects.find()
-    .then(data => {
-     
-      console.log(data)
-      // const convertedData: Project[] = data.map(record => {
-      //   return {
-      //     name: record.name,
-      //     age: record.age,
-      //     city: record.city,
-      //     // ...
-      //   };
-      // });
-      setDataDb(data)
-    })
-    .catch(error => {
-      console.error('Error retrieving data:', error);
-    });
-  },[]);
+
 
   return (
     <Context.Provider
