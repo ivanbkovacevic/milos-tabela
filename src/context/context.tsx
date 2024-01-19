@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import projects from "../projects.json";
 import { SortOrder, SortProperties, Project } from "../constants";
-
-import mongoose from "mongoose";
-
-const projectsString = JSON.stringify(projects);
-const productsParsed = JSON.parse(projectsString);
 
 interface ContextState {
   projectsList: Project[];
@@ -24,7 +18,7 @@ interface ContextProps {
 
 const Context = React.createContext<ContextProps>({
   state: {
-    projectsList: productsParsed,
+    projectsList: [],
     selectedProject: null,
   },
   setProjectsList: () => {},
@@ -36,10 +30,8 @@ const Context = React.createContext<ContextProps>({
 });
 
 function ContextProvider(props: React.PropsWithChildren<{}>) {
-  const [dataDb, setDataDb] = useState<Project[]>([]);
-  console.log("datadb", dataDb);
   const [state, setState] = React.useState<ContextState>({
-    projectsList: productsParsed,
+    projectsList: [],
     selectedProject: null,
   });
 
