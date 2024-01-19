@@ -12,7 +12,6 @@ interface TableRowsProps {
 const TableRowsProjects: React.FC<TableRowsProps> = ({ data }) => {
   const { selectProject } = useContext(Context);
   const { togglePopUp } = useContext(ContextUI);
-
   return (
     <tr key={data.id}>
       <td>{data.name}</td>

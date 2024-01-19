@@ -1,8 +1,14 @@
 [
   {
     "name": "Light teeth",
-    "productPage": ["www.sonicglow.com", "www.nike.com"],
-    "articlePage": ["www.adidas.com", "www.ferrari.com"],
+    "productPage": [
+      "www.sonicglow.com",
+      "www.nike.com"
+    ],
+    "articlePage": [
+      "www.adidas.com",
+      "www.ferrari.com"
+    ],
     "email": "some@email.com",
     "pageLink": "www.sonicglow.com",
     "productImg": "../../assets/red-light-teeth.jpg",
@@ -10,8 +16,14 @@
   },
   {
     "name": "Red light wand",
-    "productPage": ["www.sonicglow.com", "www.nike.com"],
-    "articlePage": ["www.adidas.com", "www.ferrari.com"],
+    "productPage": [
+      "www.sonicglow.com",
+      "www.nike.com"
+    ],
+    "articlePage": [
+      "www.adidas.com",
+      "www.ferrari.com"
+    ],
     "email": "some@email.com",
     "pageLink": "www.sonicglow.com",
     "productImg": "../../assets/red-light-wand.jpg",
@@ -19,8 +31,14 @@
   },
   {
     "name": "Red light",
-    "productPage": ["www.sonicglow.com", "www.nike.com"],
-    "articlePage": ["www.adidas.com", "www.ferrari.com"],
+    "productPage": [
+      "www.sonicglow.com",
+      "www.nike.com"
+    ],
+    "articlePage": [
+      "www.adidas.com",
+      "www.ferrari.com"
+    ],
     "email": "some@email.com",
     "pageLink": "www.sonicglow.com",
     "productImg": "../../assets/red-light.jpg",
@@ -28,9 +46,13 @@
   },
   {
     "name": "eepppppe",
-    "productImg": "eeee",
-    "productPage": ["erwr"],
-    "articlePage": ["rewrew"],
+    "productImg": "../../assets/red-light-teeth.jpg",
+    "productPage": [
+      "erwr"
+    ],
+    "articlePage": [
+      "rewrew"
+    ],
     "email": "eeee@gmail.com",
     "pageLink": "ewrwer",
     "id": "a2740ee5-c031-4965-a7ed-ec209b9fe95e"

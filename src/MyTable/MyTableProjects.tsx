@@ -53,6 +53,7 @@ const MyTableProjects: React.FC<MyTableProps> = () => {
   const handlePagination = (value: number) => {
     setCurrentPage(value);
   };
+  console.log('test');
 
   useEffect(() => {
     const fetchData = async () => {
