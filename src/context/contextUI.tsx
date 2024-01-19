@@ -44,8 +44,9 @@ function ContextUIProvider(props: React.PropsWithChildren<{}>) {
   const setLoadApp = (key:string) => {
     setState({
       ...stateUI,
-      loadApp: key === "milosAffiliateTabela",
+      loadApp: !stateUI.loadApp,
     });
+    localStorage.setItem("pass", key);
   };
 
 

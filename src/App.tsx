@@ -10,7 +10,7 @@ import FormProject from "./Form/FormProject";
 
 const App: React.FC = () => {
   const { stateUI, togglePopUp, setLoadApp } = useContext(ContextUI);
-  const { popUpIsOpen, popUpVariant, loadApp } = stateUI;
+  const { popUpIsOpen, popUpVariant } = stateUI;
 
   useEffect(() => {
     // Set the document title when the component mounts
@@ -37,7 +37,8 @@ const App: React.FC = () => {
   const [formData, setFormData] = useState({
     pass: "",
   });
-
+  
+  const storedPass = localStorage.getItem("pass");
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({
@@ -51,9 +52,11 @@ const App: React.FC = () => {
     setLoadApp(formData.pass)
   };
 
+
   return (
     <div className={style.wrapper}>
       <h1>Web Development projects</h1>
+      {storedPass === null && (
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -63,14 +66,15 @@ const App: React.FC = () => {
         />
         <button type="submit">Load</button>
       </form>
+      ) }
+      {( storedPass === "milosAffiliateTabela") && (
+        <>
       <button
         className={style.btnAddNew}
         onClick={() => togglePopUp(PopUpVariant.ADD_NEW_PROJECT)}
       >
         Add new
       </button>
-      {loadApp && (
-        <>
           <Suspense fallback={<div>Loading...</div>}>
             <MyTableProjects />
             {popUpIsOpen && <PopUp>{generatePopUpChildren()}</PopUp>}
