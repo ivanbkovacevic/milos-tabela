@@ -30,7 +30,6 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
       .email("Invalid email address")
       .required("Email address is required"),
     pageLink: Yup.string().required("Page link is required"),
-   
   });
 
   const initialValues = {

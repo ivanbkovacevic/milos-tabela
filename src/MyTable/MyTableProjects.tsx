@@ -54,11 +54,10 @@ const MyTableProjects: React.FC<MyTableProps> = () => {
     setCurrentPage(value);
   };
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios("/api/items"); 
+        const response = await axios("/api/items");
         const jsonData = await response.data;
         setProjectsList(jsonData);
       } catch (error) {
@@ -66,7 +65,7 @@ const MyTableProjects: React.FC<MyTableProps> = () => {
       }
     };
 
-    if(!initialLoading || itemUpdated) {
+    if (!initialLoading || itemUpdated) {
       fetchData();
     }
   }, [initialLoading, itemUpdated, setProjectsList]);

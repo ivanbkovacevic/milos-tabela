@@ -7,7 +7,6 @@ interface ContextState {
   selectedProject: Project | null;
   initialLoading: boolean;
   itemUpdated: boolean;
-
 }
 
 interface ContextProps {
@@ -41,7 +40,6 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
     selectedProject: null,
     initialLoading: false,
     itemUpdated: false,
-
   });
 
   const setProjectsList = (data: Project[]) => {
@@ -55,11 +53,9 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
 
   const addNewProject = async (data: Project) => {
     try {
-       axios.post('/api/items', 
-       data
-      );
+      axios.post("/api/items", data);
     } catch (error) {
-      console.error('Error adding item', error);
+      console.error("Error adding item", error);
     }
     setState({
       ...state,
@@ -71,7 +67,7 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
     try {
       await axios.put(`/api/items/${data.id}`, data);
     } catch (error) {
-      console.error('Error editing item', error);
+      console.error("Error editing item", error);
     }
     setState({
       ...state,
@@ -83,7 +79,7 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
     try {
       await axios.delete(`/api/items/${data?.id}`);
     } catch (error) {
-      console.error('Error editing item', error);
+      console.error("Error editing item", error);
     }
     setState({
       ...state,
@@ -172,8 +168,6 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
         break;
     }
   };
-
-
 
   return (
     <Context.Provider
