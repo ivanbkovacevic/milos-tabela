@@ -42,6 +42,7 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
     itemUpdated: false,
   });
 
+
   const setProjectsList = (data: Project[]) => {
     setState({
       ...state,

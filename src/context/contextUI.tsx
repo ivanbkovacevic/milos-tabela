@@ -4,10 +4,13 @@ import { PopUpVariant } from "../constants";
 interface ContextState {
   popUpIsOpen: boolean;
   popUpVariant: string;
+  loadApp: boolean,
+  
 }
 
 interface ContextProps {
   stateUI: ContextState;
+  setLoadApp: (key:string) => void;
   togglePopUp: (v?: string ) => void;
 }
 
@@ -15,14 +18,19 @@ const ContextUI = React.createContext<ContextProps>({
   stateUI: {
     popUpIsOpen: false,
     popUpVariant: PopUpVariant.ADD_NEW_PROJECT,
+    loadApp: false,
   },
   togglePopUp: () => {},
+  setLoadApp: () => {},
+
 });
 
 function ContextUIProvider(props: React.PropsWithChildren<{}>) {
   const [stateUI, setState] = React.useState<ContextState>({
     popUpIsOpen: false,
     popUpVariant: PopUpVariant.ADD_NEW_PROJECT,
+    loadApp: false,
+
   });
 
   const togglePopUp = (variant: string = PopUpVariant.ADD_NEW_PROJECT) => {
@@ -33,12 +41,20 @@ function ContextUIProvider(props: React.PropsWithChildren<{}>) {
     });
   };
 
+  const setLoadApp = (key:string) => {
+    setState({
+      ...stateUI,
+      loadApp: key === "milosAffiliateTabela",
+    });
+  };
+
 
   return (
     <ContextUI.Provider
       value={{
         stateUI,
         togglePopUp,
+        setLoadApp,
       }}
     >
       {props.children}

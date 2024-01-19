@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../context/context";
+import { ContextUI } from "../context/contextUI";
 import NumOfRows from "./NumOfRows/NumOfRows";
 import Pagination from "./Pagination/Pagination";
 import { SortOrder, TABLE_HEADERS_PRODUCTS } from "../constants";
@@ -12,6 +13,10 @@ interface MyTableProps {}
 const MyTableProjects: React.FC<MyTableProps> = () => {
   const { state, handleSort, setProjectsList } = useContext(Context);
   const { projectsList, initialLoading, itemUpdated } = state;
+  const { stateUI, setLoadApp } = useContext(ContextUI);
+  const { loadApp } = stateUI;
+
+
 
   const [numOfRows, setNumOfRows] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,7 +58,6 @@ const MyTableProjects: React.FC<MyTableProps> = () => {
   const handlePagination = (value: number) => {
     setCurrentPage(value);
   };
-  console.log('test');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,8 +73,9 @@ const MyTableProjects: React.FC<MyTableProps> = () => {
     if (!initialLoading || itemUpdated) {
       fetchData();
     }
-  }, [initialLoading, itemUpdated, setProjectsList]);
 
+  }, [initialLoading, itemUpdated, setProjectsList]);
+  
   return (
     <div className={style.wrapper}>
       <NumOfRows handleNumOfRows={handleNumOfRows} numOfRows={numOfRows} />
