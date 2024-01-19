@@ -11,7 +11,7 @@ interface MyTableProps {}
 
 const MyTableProjects: React.FC<MyTableProps> = () => {
   const { state, handleSort, setProjectsList } = useContext(Context);
-  const { projectsList } = state;
+  const { projectsList, initialLoading, itemUpdated } = state;
 
   const [numOfRows, setNumOfRows] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,18 +54,22 @@ const MyTableProjects: React.FC<MyTableProps> = () => {
     setCurrentPage(value);
   };
 
-  const fetchData = async () => {
-    try {
-      const response = await axios("/getData"); 
-      const jsonData = await response.data;
-      setProjectsList(jsonData);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+
   useEffect(() => {
-    fetchData();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await axios("/api/items"); 
+        const jsonData = await response.data;
+        setProjectsList(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    if(!initialLoading || itemUpdated) {
+      fetchData();
+    }
+  }, [initialLoading, itemUpdated, setProjectsList]);
 
   return (
     <div className={style.wrapper}>

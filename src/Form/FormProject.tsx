@@ -81,24 +81,6 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
         placeHolder: "html email",
         value: initialValues.email,
       },
-      // {
-      //   label: "Product page",
-      //   id: "productPage",
-      //   type: "text",
-      //   required: true,
-      //   name: "productPage",
-      //   placeHolder: "www.something",
-      //   value: initialValues.productPage,
-      // },
-      // {
-      //   label: "Article page link",
-      //   id: "articlePage",
-      //   type: "text",
-      //   required: true,
-      //   name: "articlePage",
-      //   placeHolder: "www.something",
-      //   value: initialValues.articlePage,
-      // },
       {
         label: "Page link",
         id: "pageLink",
@@ -130,7 +112,6 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
     });
   };
 
-  console.log(initialValues, PopUpVariant);
   return (
     <div className={style.wrapper}>
       <h1 className={style.heading}>

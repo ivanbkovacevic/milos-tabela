@@ -1,22 +1,6 @@
-export interface Employee {
-  id?: number;
-  age: string;
-  name: string;
-  position: string;
-  office: string;
-  startDate: string;
-  salary: string;
-  [key: string]: any;
-}
 
 export interface Project {
-  // objectId: string;
-  // ownerId: string;
-  // created: number;
-  // updated: number;
-  // propertyA: null;
-  // propertyB: null;
-  // __class:string;
+  id?: string;
   name: string;
   productPage: string[];
   articlePage: string[];
