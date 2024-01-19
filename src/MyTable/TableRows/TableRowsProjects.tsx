@@ -19,7 +19,12 @@ const TableRowsProjects: React.FC<TableRowsProps> = ({ data }) => {
       <td className={style.multipleValues}>
         {data.productPage.map((item) => {
           return (
-            <a key={item} href={`https://${item}`} target="_blank" rel="noreferrer">
+            <a
+              key={item}
+              href={`https://${item}`}
+              target="_blank"
+              rel="noreferrer"
+            >
               {item}
             </a>
           );
@@ -28,19 +33,23 @@ const TableRowsProjects: React.FC<TableRowsProps> = ({ data }) => {
       <td className={style.multipleValues}>
         {data.articlePage.map((item) => {
           return (
-            <a key={item} href={`https://${item}`} target="_blank" rel="noreferrer">
+            <a
+              key={item}
+              href={`https://${item}`}
+              target="_blank"
+              rel="noreferrer"
+            >
               {item}
             </a>
           );
         })}
       </td>
-      <td>{data.htmlEmail}</td>
-      <td>{data.articlePageText}</td>
-
+      <td>{data.email}</td>
+      <td>{data.pageLink}</td>
       <td>
         <div className={style.imgWrapper}>
-          <img src={data.productImg} alt={data.productImgAltText} />
-          <ControlledPopup src={data.productImg} alt={data.productImgAltText} />
+          <img src={data.productImg} alt={data.productImg} />
+          <ControlledPopup src={data.productImg} alt={data.productImg} />
         </div>
       </td>
       <td>

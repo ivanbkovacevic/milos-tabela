@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, Suspense } from "react";
 import { ContextUI } from "./context/contextUI";
 import PopUp from "./PopUp/PopUp";
 import { PopUpVariant } from "./constants";
@@ -14,16 +14,15 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // Set the document title when the component mounts
-    document.title = 'Web development projects';
+    document.title = "Web development projects";
 
     // Optionally, you can reset the title when the component unmounts
     return () => {
-      document.title = 'Default Title';
+      document.title = "Default Title";
     };
-  }, []); 
+  }, []);
   const generatePopUpChildren = () => {
     switch (popUpVariant) {
-
       case PopUpVariant.ADD_NEW_PROJECT:
         return <FormProject formAction={PopUpVariant.ADD_NEW_PROJECT} />;
       case PopUpVariant.CONFIRM_PROJECT:
@@ -42,8 +41,10 @@ const App: React.FC = () => {
       >
         Add new
       </button>
-      <MyTableProjects />
-      {popUpIsOpen && <PopUp>{generatePopUpChildren()}</PopUp>}
+      <Suspense fallback={<div>Loading...</div>}>
+        <MyTableProjects />
+        {popUpIsOpen && <PopUp>{generatePopUpChildren()}</PopUp>}
+      </Suspense>
     </div>
   );
 };

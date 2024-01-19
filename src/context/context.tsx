@@ -1,14 +1,12 @@
-import React from "react";
-import projects from "../projects.json";
+import React, { useEffect, useState } from "react";
 import { SortOrder, SortProperties, Project } from "../constants";
-
-
-const projectsString = JSON.stringify(projects);
-const productsParsed = JSON.parse(projectsString);
+import axios from "axios";
 
 interface ContextState {
   projectsList: Project[];
   selectedProject: Project | null;
+  initialLoading: boolean;
+  itemUpdated: boolean;
 }
 
 interface ContextProps {
@@ -23,8 +21,10 @@ interface ContextProps {
 
 const Context = React.createContext<ContextProps>({
   state: {
-    projectsList: productsParsed,
+    projectsList: [],
     selectedProject: null,
+    initialLoading: false,
+    itemUpdated: false,
   },
   setProjectsList: () => {},
   addNewProject: () => {},
@@ -36,46 +36,54 @@ const Context = React.createContext<ContextProps>({
 
 function ContextProvider(props: React.PropsWithChildren<{}>) {
   const [state, setState] = React.useState<ContextState>({
-    projectsList: productsParsed,
+    projectsList: [],
     selectedProject: null,
+    initialLoading: false,
+    itemUpdated: false,
   });
-
 
   const setProjectsList = (data: Project[]) => {
     setState({
       ...state,
       projectsList: [...data],
+      initialLoading: true,
+      itemUpdated: false,
     });
   };
 
-  const addNewProject = (data: Project) => {
+  const addNewProject = async (data: Project) => {
+    try {
+      axios.post("/api/items", data);
+    } catch (error) {
+      console.error("Error adding item", error);
+    }
     setState({
       ...state,
-      projectsList: [data, ...state.projectsList],
+      initialLoading: false,
     });
   };
 
-
-  const editProject = (data: Project) => {
-    const newList = state.projectsList.map((item: Project) => {
-      if (item.id === data.id) {
-        return { ...data };
-      }
-      return item;
-    });
+  const editProject = async (data: Project) => {
+    try {
+      await axios.put(`/api/items/${data.id}`, data);
+    } catch (error) {
+      console.error("Error editing item", error);
+    }
     setState({
       ...state,
-      projectsList: [...newList],
+      itemUpdated: true,
     });
   };
 
-  const removeProject = (data: Project | null) => {
-    const newList = state.projectsList.filter(
-      (product: Project) => product.id !== data?.id
-    );
+  const removeProject = async (data: Project | null) => {
+    try {
+      await axios.delete(`/api/items/${data?.id}`);
+    } catch (error) {
+      console.error("Error editing item", error);
+    }
     setState({
       ...state,
-      projectsList: [...newList],
+      itemUpdated: true,
     });
   };
 

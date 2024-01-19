@@ -1,16 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../context/context";
 import NumOfRows from "./NumOfRows/NumOfRows";
 import Pagination from "./Pagination/Pagination";
 import { SortOrder, TABLE_HEADERS_PRODUCTS } from "../constants";
 import style from "./MyTable.module.scss";
 import TableRowsProjects from "./TableRows/TableRowsProjects";
+import axios from "axios";
 
 interface MyTableProps {}
 
 const MyTableProjects: React.FC<MyTableProps> = () => {
-  const { state, handleSort } = useContext(Context);
-  const { projectsList } = state;
+  const { state, handleSort, setProjectsList } = useContext(Context);
+  const { projectsList, initialLoading, itemUpdated } = state;
 
   const [numOfRows, setNumOfRows] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
@@ -52,6 +53,22 @@ const MyTableProjects: React.FC<MyTableProps> = () => {
   const handlePagination = (value: number) => {
     setCurrentPage(value);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios("/api/items");
+        const jsonData = await response.data;
+        setProjectsList(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    if (!initialLoading || itemUpdated) {
+      fetchData();
+    }
+  }, [initialLoading, itemUpdated, setProjectsList]);
 
   return (
     <div className={style.wrapper}>
