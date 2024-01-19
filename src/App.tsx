@@ -56,7 +56,7 @@ const App: React.FC = () => {
   return (
     <div className={style.wrapper}>
       <h1>Web Development projects</h1>
-      {storedPass === null && (
+      {(storedPass === null || storedPass !== "milosAffiliateTabela") && (
       <form onSubmit={handleSubmit}>
         <input
           type="text"
