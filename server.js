@@ -1,5 +1,7 @@
 import express from 'express';
 import pkg from 'body-parser';
+import multer from 'multer';
+import path from 'path';
 
 import {
     readFile,
@@ -49,6 +51,7 @@ app.get('/api/items', (req, res) => {
 // POST: Create a new item
 app.post('/api/items', (req, res) => {
     const newItem = req.body;
+    console.log('NEW ITEMMMMM',newItem.productImg.filename)
     data.push(newItem);
     saveData().then(() => res.json(newItem));
 });
@@ -69,6 +72,34 @@ app.delete('/api/items/:id', (req, res) => {
         message: 'Item deleted successfully'
     }));
 });
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads'); // specify the upload directory
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    },
+});
+
+// Initialize Multer with the storage configuration
+const upload = multer({
+    storage: storage
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
+
+// Handle image upload
+app.post('/upload', upload.single('productImg'), (req, res) => {
+    if (!req.file) {
+        return res.status(400).send('No file uploaded.');
+    }
+    res.send('File uploaded successfully: ' + req.file.filename);
+});
+
+app.use('/uploads', express.static('/uploads'));
 
 // Start the server
 app.listen(PORT, () => {

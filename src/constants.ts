@@ -6,7 +6,7 @@ export interface Project {
   articlePage: string[];
   email: string;
   pageLink: string;
-  productImg: string;
+  productImg: File | null;
   [key: string]: any;
 }
 

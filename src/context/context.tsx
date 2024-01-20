@@ -42,7 +42,6 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
     itemUpdated: false,
   });
 
-
   const setProjectsList = (data: Project[]) => {
     setState({
       ...state,
@@ -55,6 +54,12 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
   const addNewProject = async (data: Project) => {
     try {
       axios.post("/api/items", data);
+      if (data.productImg !== null) {
+        const formData = new FormData();
+        formData.append("productImg", data.productImg);
+        console.log('CONTEXT',formData)
+      axios.post("/upload", formData);
+      }
     } catch (error) {
       console.error("Error adding item", error);
     }

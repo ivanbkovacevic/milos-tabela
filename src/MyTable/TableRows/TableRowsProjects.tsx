@@ -47,8 +47,12 @@ const TableRowsProjects: React.FC<TableRowsProps> = ({ data }) => {
       <td>{data.pageLink}</td>
       <td>
         <div className={style.imgWrapper}>
-          <img src={data.productImg} alt={data.productImg} />
-          <ControlledPopup src={data.productImg} alt={data.productImg} />
+          {data.productImg !== null && 
+          <>
+          <img src={data.productImg.name} alt={data.productImg.name} />
+          <ControlledPopup src={data.productImg.name} alt={data.productImg.name} />
+          </>
+          }
         </div>
       </td>
       <td>

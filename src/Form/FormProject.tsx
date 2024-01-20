@@ -19,7 +19,8 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
-    productImg: Yup.string().required("Project image is required"),
+    // productImg:Yup.mixed()
+    // .required('Image is required'),
     productPage: Yup.array().of(
       Yup.string().nullable().required("Product page is required")
     ),
@@ -34,7 +35,7 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
 
   const initialValues = {
     name: "",
-    productImg: "",
+    productImg: null,
     productPage: [""],
     articlePage: [""],
     email: "",
@@ -61,15 +62,6 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
         name: "name",
         placeHolder: "cool project",
         value: initialValues.name,
-      },
-      {
-        label: "Product image",
-        id: "productImg",
-        type: "text",
-        required: true,
-        name: "productImg",
-        placeHolder: "some image",
-        value: initialValues.productImg,
       },
       {
         label: "Html Email",
@@ -100,6 +92,7 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
             id={item.id}
             name={item.name}
             placeholder={item.placeHolder}
+         
           />
           <ErrorMessage
             name={item.name}
@@ -110,6 +103,7 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
       );
     });
   };
+
 
   return (
     <div className={style.wrapper}>
@@ -127,7 +121,7 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
         validationSchema={validationSchema}
         onSubmit={handleFormSubmited}
         enableReinitialize={true}
-        render={({ values }: any) => (
+        render={({ values, setFieldValue }: any) => (
           <Form>
             {generateFormFields()}
             <label htmlFor="productPage">Product page</label>
@@ -163,14 +157,7 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
                 </div>
               )}
             />
-            {/* <div>
-              <button type="submit">
-                {formAction === PopUpVariant.ADD_NEW_PROJECT
-                  ? "Add new project"
-                  : "Edit project"}
-              </button>
-            </div> */}
-
+       
             <label htmlFor="articlePage">Article page</label>
             <ErrorMessage
               name="articlePage"
@@ -204,6 +191,25 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
                 </div>
               )}
             />
+              <div className={style.inputWrapper}>
+          <label htmlFor="productImg">Product image</label>
+          <input
+            type="file"
+            id="productImg"
+            name="productImg"
+            accept="image/*"
+            onChange={(e:any) => {
+              if (e.currentTarget.files) {
+                setFieldValue("productImg", e.currentTarget.files[0]);
+              }
+            }}
+          />
+          <ErrorMessage
+            name="productimg"
+            component="div"
+            className={style.errorMsg}
+          />
+        </div>
             <div>
               <button type="submit">
                 {formAction === PopUpVariant.ADD_NEW_PROJECT
