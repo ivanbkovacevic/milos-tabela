@@ -7,6 +7,7 @@ interface ContextState {
   selectedProject: Project | null;
   initialLoading: boolean;
   itemUpdated: boolean;
+  imgName: string;
 }
 
 interface ContextProps {
@@ -17,6 +18,7 @@ interface ContextProps {
   editProject: (data: Project) => void;
   removeProject: (data: Project | null) => void;
   selectProject: (data: Project | null) => void;
+  setImgName: (name: string) => void;
 }
 
 const Context = React.createContext<ContextProps>({
@@ -25,6 +27,7 @@ const Context = React.createContext<ContextProps>({
     selectedProject: null,
     initialLoading: false,
     itemUpdated: false,
+    imgName: '',
   },
   setProjectsList: () => {},
   addNewProject: () => {},
@@ -32,6 +35,7 @@ const Context = React.createContext<ContextProps>({
   removeProject: () => {},
   selectProject: () => {},
   handleSort: () => {},
+  setImgName: () => {},
 });
 
 function ContextProvider(props: React.PropsWithChildren<{}>) {
@@ -40,6 +44,7 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
     selectedProject: null,
     initialLoading: false,
     itemUpdated: false,
+    imgName: '',
   });
 
   const setProjectsList = (data: Project[]) => {
@@ -50,15 +55,21 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
       itemUpdated: false,
     });
   };
+  const setImgName = (name: string) => {
+    setState({
+      ...state,
+      imgName: name,
+    });
+  };
 
   const addNewProject = async (data: Project) => {
     try {
-      axios.post("/api/items", data);
-      if (data.productImg !== null) {
-        const formData = new FormData();
+      const formData = new FormData();
+      if ( typeof(data.productImg) === 'object' && data.productImg !== null ) {
         formData.append("productImg", data.productImg);
-        console.log('CONTEXT',formData)
-      axios.post("/upload", formData);
+        axios.post("/upload", formData);
+        const addedImgPath = { ...data, productImg: `../../assets/${data.productImg?.name.replace(/\s/g, '')}`}
+        axios.post("/api/items", addedImgPath);
       }
     } catch (error) {
       console.error("Error adding item", error);
@@ -71,7 +82,13 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
 
   const editProject = async (data: Project) => {
     try {
-      await axios.put(`/api/items/${data.id}`, data);
+      const formData = new FormData();
+      if ( typeof(data.productImg) === 'object' && data.productImg !== null ) {
+        formData.append("productImg", data.productImg);
+        axios.post("/upload", formData);
+        const addedImgPath = { ...data, productImg: `../../assets/${data.productImg?.name.replace(/\s/g, '')}`}
+      await axios.put(`/api/items/${data.id}`, addedImgPath);
+      }
     } catch (error) {
       console.error("Error editing item", error);
     }
@@ -185,6 +202,7 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
         removeProject,
         handleSort,
         selectProject,
+        setImgName,
       }}
     >
       {props.children}

@@ -1,35 +1,5 @@
 [
   {
-    "name": "Light teethh",
-    "productPage": [
-      "www.sonicglow.com",
-      "www.nike.com"
-    ],
-    "articlePage": [
-      "www.adidas.com",
-      "www.ferrari.com"
-    ],
-    "email": "some@email.com",
-    "pageLink": "www.sonicglow.com",
-    "productImg": "../../assets/red-light-teeth.jpg",
-    "id": "3"
-  },
-  {
-    "name": "Red light wand",
-    "productPage": [
-      "www.sonicglow.com",
-      "www.nike.com"
-    ],
-    "articlePage": [
-      "www.adidas.com",
-      "www.ferrari.com"
-    ],
-    "email": "some@email.com",
-    "pageLink": "www.sonicglow.com",
-    "productImg": "../../assets/red-light-wand.jpg",
-    "id": "4"
-  },
-  {
     "name": "Red light",
     "productPage": [
       "www.sonicglow.com",
@@ -45,133 +15,56 @@
     "id": "5"
   },
   {
-    "name": "eee",
-    "productImg": {},
-    "productPage": [
-      "ee"
-    ],
-    "articlePage": [
-      "ee"
-    ],
-    "email": "eee@ff.co",
-    "pageLink": "ee",
-    "id": "b054b5d3-909e-43a4-b0a2-295f8da5b365"
-  },
-  {
     "name": "rrr",
-    "productImg": {},
+    "productImg": "../../assets/mg_5307resizepotpis.jpg",
     "productPage": [
       "rrr"
     ],
     "articlePage": [
       "rrr"
     ],
-    "email": "rrrr@rr.co",
+    "email": "rrr@gg.com",
     "pageLink": "rrr",
-    "id": "5f62cbdc-8f4b-4aa6-81df-829dfc449d45"
+    "id": "762a2d19-c94c-4ef0-83d5-20c2ac388ee0"
   },
   {
-    "name": "ttt",
-    "productImg": {},
+    "name": "ewqeq",
+    "productImg": "../../assets/novi-plakat04abc.jpg",
     "productPage": [
-      "ttt"
+      "few"
     ],
     "articlePage": [
-      "ttt"
+      "fewf"
     ],
-    "email": "tttt@ttt.co",
-    "pageLink": "ttt",
-    "id": "20f540c0-9fb1-43b1-8f45-9f18aff6d399"
-  },
-  {
-    "name": "gw",
-    "productImg": {},
-    "productPage": [
-      "ewq"
-    ],
-    "articlePage": [
-      "ewq"
-    ],
-    "email": "few@gms.co",
+    "email": "ewqeq@ds.co",
     "pageLink": "ewq",
-    "id": "ac6d9eab-6b98-4187-a690-e72890aae59a"
+    "id": "8c0f6a17-a4d3-4fd6-8bfb-5f900ceb5b08"
   },
   {
-    "name": "yyy",
-    "productImg": {},
-    "productPage": [
-      "yyy"
-    ],
-    "articlePage": [
-      "yyy"
-    ],
-    "email": "yyy@ff.co",
-    "pageLink": "yyy",
-    "id": "5ac464fa-df5b-450c-968b-8e953a440026"
-  },
-  {
-    "name": "ouoh",
-    "productImg": {},
-    "productPage": [
-      "fewef"
-    ],
-    "articlePage": [
-      "fewef"
-    ],
-    "email": "sdqad@gmail.com",
-    "pageLink": "ewf",
-    "id": "02dee239-a347-43c9-bc4f-428bb8e76a81"
-  },
-  {
-    "name": "uuu",
-    "productImg": {},
-    "productPage": [
-      "uuu"
-    ],
-    "articlePage": [
-      "uuu"
-    ],
-    "email": "uuu@ggcom",
-    "pageLink": "uuu",
-    "id": "3aaeabf7-8ac1-43d8-9a5a-d3bdde3d96fa"
-  },
-  {
-    "name": "few",
-    "productImg": {},
+    "name": "qrq",
+    "productImg": "../../assets/_MG_5284.JPG",
     "productPage": [
       "few"
     ],
     "articlePage": [
       "few"
     ],
-    "email": "few@fda.co",
-    "pageLink": "fwef",
-    "id": "5b942160-0b5b-4168-8d4e-117e6fd35696"
+    "email": "ewqeq@fwf",
+    "pageLink": "few",
+    "id": "4d62a41a-8dbb-473c-a80d-a4aa8863a082"
   },
   {
-    "name": "rge",
-    "productImg": {},
+    "name": "dwqdq",
+    "productImg": "../../assets/images.png",
     "productPage": [
-      "rew"
+      "wwww"
     ],
     "articlePage": [
-      "rew"
+      "wwwww",
+      "wwwww"
     ],
-    "email": "rger@dfwfg.co",
-    "pageLink": "rew",
-    "id": "e77330f4-21d8-4753-91dc-a668292d1625"
-  },
-  {
-    "name": "oooo",
-    "productImg": {},
-    "productPage": [
-      "oooo"
-    ],
-    "articlePage": [
-      "oooo"
-    ],
-    "email": "ooo@ooo.com",
-    "pageLink": "oooo",
-    "id": "699232b4-5c02-4ce8-b98a-9d0234d37423"
+    "email": "dwqdwq@wfw.oc",
+    "pageLink": "ewqqww",
+    "id": "0ac7fba0-4c39-470f-b501-79786ae58ed8"
   }
 ]

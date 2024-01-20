@@ -43,6 +43,23 @@ async function saveData() {
 // Load initial data
 loadData();
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/assets'); // specify the upload directory
+    },
+    filename: function (req, file, cb) {
+        const nameImg = file.originalname.replace(/\s/g, '');
+        console.log('REQIDDDDDD', nameImg)
+
+        cb(null, nameImg);
+    },
+});
+
+// Initialize Multer with the storage configuration
+const upload = multer({
+    storage: storage
+});
+
 // GET: Retrieve all items
 app.get('/api/items', (req, res) => {
     res.json(data);
@@ -51,7 +68,6 @@ app.get('/api/items', (req, res) => {
 // POST: Create a new item
 app.post('/api/items', (req, res) => {
     const newItem = req.body;
-    console.log('NEW ITEMMMMM',newItem.productImg.filename)
     data.push(newItem);
     saveData().then(() => res.json(newItem));
 });
@@ -73,25 +89,13 @@ app.delete('/api/items/:id', (req, res) => {
     }));
 });
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './uploads'); // specify the upload directory
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname);
-    },
-});
 
-// Initialize Multer with the storage configuration
-const upload = multer({
-    storage: storage
-});
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-// Handle image upload
+//Handle image upload
 app.post('/upload', upload.single('productImg'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');

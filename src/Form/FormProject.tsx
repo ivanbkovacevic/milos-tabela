@@ -12,7 +12,7 @@ interface FormProps {
 }
 
 const FormProject: React.FC<FormProps> = ({ formAction }) => {
-  const { state, addNewProject, editProject } = useContext(Context);
+  const { state, addNewProject, editProject, } = useContext(Context);
   const { selectedProject } = state;
   const { togglePopUp, stateUI } = useContext(ContextUI);
   const { popUpVariant } = stateUI;
@@ -203,6 +203,7 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
                 setFieldValue("productImg", e.currentTarget.files[0]);
               }
             }}
+            {...({ encType: "multipart/form-data" } as any)}
           />
           <ErrorMessage
             name="productimg"
