@@ -12,7 +12,7 @@ interface FormProps {
 }
 
 const FormProject: React.FC<FormProps> = ({ formAction }) => {
-  const { state, addNewProject, editProject } = useContext(Context);
+  const { state, addNewProject, editProject, } = useContext(Context);
   const { selectedProject } = state;
   const { togglePopUp, stateUI } = useContext(ContextUI);
   const { popUpVariant } = stateUI;
