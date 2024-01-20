@@ -203,6 +203,7 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
                 setFieldValue("productImg", e.currentTarget.files[0]);
               }
             }}
+            {...({ encType: "multipart/form-data" } as any)}
           />
           <ErrorMessage
             name="productimg"

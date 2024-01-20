@@ -1,6 +1,7 @@
 import React from "react";
 import { SortOrder, SortProperties, Project } from "../constants";
 import axios from "axios";
+import { object } from "yup";
 
 interface ContextState {
   projectsList: Project[];
@@ -53,12 +54,13 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
 
   const addNewProject = async (data: Project) => {
     try {
-      axios.post("/api/items", data);
-      if (data.productImg !== null) {
-        const formData = new FormData();
+      const formData = new FormData();
+      if ( typeof(data.productImg) === 'object' && data.productImg !== null ) {
+        console.log('NAMe', data.productImg.name)
         formData.append("productImg", data.productImg);
-        console.log('CONTEXT',formData)
-      axios.post("/upload", formData);
+        axios.post("/upload", formData);
+        const addedImgPath = { ...data, productImg: `../../assets/${data.productImg?.name.replace(/\s/g, '')}`}
+        axios.post("/api/items", addedImgPath);
       }
     } catch (error) {
       console.error("Error adding item", error);
