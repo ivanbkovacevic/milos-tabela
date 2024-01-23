@@ -57,7 +57,7 @@ const MyTableProjects: React.FC<MyTableProps> = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios("/getItems");
+        const response = await axios("/.netlify/functions/server/getItems");
         const jsonData = await response.data;
         setProjectsList(jsonData);
       } catch (error) {

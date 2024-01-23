@@ -69,7 +69,7 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
         formData.append("productImg", data.productImg);
         // axios.post("/upload", formData);
         const addedImgPath = { ...data, productImg: `../../assets/${data.productImg?.name.replace(/\s/g, '')}`}
-        axios.post("/newProject", addedImgPath);
+        axios.post("/.netlify/functions/server/newProject", addedImgPath);
       }
     } catch (error) {
       console.error("Error adding item", error);
@@ -87,7 +87,7 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
         formData.append("productImg", data.productImg);
       //  axios.post("/upload", formData);
         const addedImgPath = { ...data, productImg: `http://localhost:5000/uploads/${data.productImg?.name.replace(/\s/g, '')}`}
-      await axios.post(`/editProject`, addedImgPath);
+      await axios.post(`/.netlify/functions/server/editProject`, addedImgPath);
       }
     } catch (error) {
       console.error("Error editing item", error);
@@ -100,7 +100,7 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
 
   const removeProject = async (data: Project | null) => {
     try {
-      await axios.post(`/deleteProject`, data);
+      await axios.post(`/.netlify/functions/server/deleteProject`, data);
     } catch (error) {
       console.error("Error editing item", error);
     }
