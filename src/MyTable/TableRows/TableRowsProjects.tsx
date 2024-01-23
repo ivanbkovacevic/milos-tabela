@@ -49,8 +49,8 @@ const TableRowsProjects: React.FC<TableRowsProps> = ({ data }) => {
         <div className={style.imgWrapper}>
           {(typeof(data.productImg) !== 'object' && data.productImg !== null) && 
           <>
-          <img src={data.productImg} alt={data.productImg} />
-          <ControlledPopup src={data.productImg} alt={data.productImg} />
+          <img src="../../assets/red-light.jpg" alt="../../assets/red-light.jpg" />
+          <ControlledPopup src="../../assets/red-light.jpg" alt="../../assets/red-light.jpg" />
           </>
           }
         </div>
