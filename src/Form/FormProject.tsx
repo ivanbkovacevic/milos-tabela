@@ -3,7 +3,6 @@ import { Context } from "../context/context";
 import { ContextUI } from "../context/contextUI";
 import { PopUpVariant, Project } from "../constants";
 import style from "./Form.module.scss";
-import { v4 as uuid } from "uuid";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
 
