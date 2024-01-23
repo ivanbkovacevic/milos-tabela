@@ -40,11 +40,10 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
     articlePage: [""],
     email: "",
     pageLink: "",
-    id: "0",
   };
   const handleFormSubmited = (values: Project, { resetForm }: any) => {
     if (formAction === PopUpVariant.ADD_NEW_PROJECT) {
-      addNewProject({ ...values, id: uuid() });
+      addNewProject(values);
     } else {
       editProject(values);
     }
