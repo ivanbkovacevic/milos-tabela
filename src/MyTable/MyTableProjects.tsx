@@ -57,7 +57,7 @@ const MyTableProjects: React.FC<MyTableProps> = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios("/server/functions/getItems");
+        const response = await axios("/getItems");
         const jsonData = await response.data;
         setProjectsList(jsonData);
       } catch (error) {

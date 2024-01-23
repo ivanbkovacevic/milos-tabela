@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "proxy": "https://stellar-blancmange-f38853.netlify.app/",
+  "proxy": "`https://radiant-beijinho-08c890.netlify.app/.netlify/functions/server/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
