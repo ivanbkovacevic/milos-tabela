@@ -42,7 +42,7 @@ const MyTableProjects: React.FC<MyTableProps> = () => {
       numOfRows * currentPage
     );
     const tableRows = pageSettedList.map((item, index) => {
-      return <TableRowsProjects key={item.id} data={item} />;
+      return <TableRowsProjects key={item._id} data={item} />;
     });
     return tableRows;
   };

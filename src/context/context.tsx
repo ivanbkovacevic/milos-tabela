@@ -85,9 +85,9 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
       const formData = new FormData();
       if ( typeof(data.productImg) === 'object' && data.productImg !== null ) {
         formData.append("productImg", data.productImg);
-        // axios.post("/upload", formData);
+      //  axios.post("/upload", formData);
         const addedImgPath = { ...data, productImg: `http://localhost:5000/uploads/${data.productImg?.name.replace(/\s/g, '')}`}
-      await axios.put(`/api/items`, addedImgPath);
+      await axios.post(`/api/items`, addedImgPath);
       }
     } catch (error) {
       console.error("Error editing item", error);
