@@ -27,7 +27,7 @@ const Context = React.createContext<ContextProps>({
     selectedProject: null,
     initialLoading: false,
     itemUpdated: false,
-    imgName: '',
+    imgName: "",
   },
   setProjectsList: () => {},
   addNewProject: () => {},
@@ -44,7 +44,7 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
     selectedProject: null,
     initialLoading: false,
     itemUpdated: false,
-    imgName: '',
+    imgName: "",
   });
 
   const setProjectsList = (data: Project[]) => {
@@ -65,10 +65,13 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
   const addNewProject = async (data: Project) => {
     try {
       const formData = new FormData();
-      if ( typeof(data.productImg) === 'object' && data.productImg !== null ) {
+      if (typeof data.productImg === "object" && data.productImg !== null) {
         formData.append("productImg", data.productImg);
-        // axios.post("/upload", formData);
-        const addedImgPath = { ...data, productImg: `../../assets/${data.productImg?.name.replace(/\s/g, '')}`}
+        axios.post("/uploadImage", formData);
+        const addedImgPath = {
+          ...data,
+          productImg: `/uploads/${data.productImg?.name.replace(/\s/g, "")}`,
+        };
         axios.post("/api/items/new", addedImgPath);
       }
     } catch (error) {
@@ -83,11 +86,17 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
   const editProject = async (data: Project) => {
     try {
       const formData = new FormData();
-      if ( typeof(data.productImg) === 'object' && data.productImg !== null ) {
+      if (typeof data.productImg === "object" && data.productImg !== null) {
         formData.append("productImg", data.productImg);
-        // axios.post("/upload", formData);
-        const addedImgPath = { ...data, productImg: `http://localhost:5000/uploads/${data.productImg?.name.replace(/\s/g, '')}`}
-      await axios.put(`/api/items`, addedImgPath);
+       await axios.post("/uploadImage", formData);
+        const addedImgPath = {
+          ...data,
+          productImg: `/uploads/${data.productImg?.name.replace(/\s/g, "")}`,
+        };
+        console.log("data za slanje", addedImgPath);
+        await axios.post(`/api/items/edit/${data.id}`, addedImgPath);
+      }else if(typeof data.productImg === "string") {
+        await axios.post(`/api/items/edit/${data.id}`, data)
       }
     } catch (error) {
       console.error("Error editing item", error);
@@ -100,7 +109,7 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
 
   const removeProject = async (data: Project | null) => {
     try {
-      await axios.post(`/api/items/delete`, data);
+      await axios.delete(`/api/items/delete/${data?.id}`);
     } catch (error) {
       console.error("Error editing item", error);
     }

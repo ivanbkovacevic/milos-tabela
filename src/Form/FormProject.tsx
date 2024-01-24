@@ -3,9 +3,9 @@ import { Context } from "../context/context";
 import { ContextUI } from "../context/contextUI";
 import { PopUpVariant, Project } from "../constants";
 import style from "./Form.module.scss";
-import { v4 as uuid } from "uuid";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
+import { v4 as uuidv4 } from 'uuid';
 
 interface FormProps {
   formAction: string;
@@ -19,8 +19,8 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
-    // productImg:Yup.mixed()
-    // .required('Image is required'),
+    productImg:Yup.mixed()
+    .required('Image is required'),
     productPage: Yup.array().of(
       Yup.string().nullable().required("Product page is required")
     ),
@@ -40,17 +40,19 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
     articlePage: [""],
     email: "",
     pageLink: "",
+    id: "0",
   };
   const handleFormSubmited = (values: Project, { resetForm }: any) => {
+    console.log('values to submit', values)
+    const productImg = values.productImg === null ? '/uploads/noImg.png' : values.productImg;
     if (formAction === PopUpVariant.ADD_NEW_PROJECT) {
-      addNewProject(values);
+      addNewProject({...values, id: uuidv4(), productImg});
     } else {
       editProject(values);
     }
     resetForm();
     togglePopUp();
   };
-
   const generateFormFields = () => {
     const fields = [
       {
@@ -205,7 +207,7 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
             {...({ encType: "multipart/form-data" } as any)}
           />
           <ErrorMessage
-            name="productimg"
+            name="productImg"
             component="div"
             className={style.errorMsg}
           />

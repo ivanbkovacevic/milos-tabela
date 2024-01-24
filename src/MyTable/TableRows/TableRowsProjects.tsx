@@ -16,10 +16,10 @@ const TableRowsProjects: React.FC<TableRowsProps> = ({ data }) => {
     <tr key={data.id}>
       <td>{data.name}</td>
       <td className={style.multipleValues}>
-        {data.productPage.map((item) => {
+        {data.productPage.map((item,idx) => {
           return (
             <a
-              key={item}
+              key={`item${idx}`}
               href={`https://${item}`}
               target="_blank"
               rel="noreferrer"
@@ -30,10 +30,10 @@ const TableRowsProjects: React.FC<TableRowsProps> = ({ data }) => {
         })}
       </td>
       <td className={style.multipleValues}>
-        {data.articlePage.map((item) => {
+        {data.articlePage.map((item,idx) => {
           return (
             <a
-              key={item}
+            key={`item${idx}`}
               href={`https://${item}`}
               target="_blank"
               rel="noreferrer"
