@@ -56,7 +56,7 @@ const App: React.FC = () => {
   return (
     <div className={style.wrapper}>
       <h1>Web Development projects</h1>
-      {(storedPass === null || storedPass !== "milosAffiliateTabela") && (
+      {(storedPass === null || storedPass !== process.env.REACT_APP_STORED_PASS) && (
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -67,7 +67,7 @@ const App: React.FC = () => {
         <button type="submit">Load</button>
       </form>
       ) }
-      {( storedPass === "milosAffiliateTabela") && (
+      {( storedPass === process.env.REACT_APP_STORED_PASS) && (
         <>
       <button
         className={style.btnAddNew}
