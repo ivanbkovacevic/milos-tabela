@@ -108,10 +108,12 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
   };
 
   const removeProject = async (data: Project | null) => {
+    const productImg = data?.productImg as string;
     try {
       await axios.delete(`/api/items/delete/${data?.id}`);
+      await axios.delete(`/deleteImage/${productImg.replace('/uploads/', '')}`);
     } catch (error) {
-      console.error("Error editing item", error);
+      console.error("Error deleting item", error);
     }
     setState({
       ...state,
