@@ -18,7 +18,7 @@ const ControlledPopup: React.FC<Props> = ({ src, alt }) => {
         className="buttonMy"
         onClick={() => setOpen((o) => !o)}
       >
-        &#128269; 
+        &#128269;
       </button>
       <Popup open={open} closeOnDocumentClick onClose={closeModal}>
         <div className="modal">
@@ -26,8 +26,7 @@ const ControlledPopup: React.FC<Props> = ({ src, alt }) => {
             &times;
           </button>
           <div className="imgWrapper">
-
-          <img src={src} alt={alt} />
+            <img src={src} alt={alt} />
           </div>
         </div>
       </Popup>

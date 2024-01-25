@@ -9,6 +9,10 @@
   display: block;
 }
 
+img {
+  max-width: 100%;
+}
+
 .popup-content {
   display: flex;
   justify-content: center;
