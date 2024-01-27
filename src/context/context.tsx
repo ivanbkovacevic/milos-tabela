@@ -1,5 +1,5 @@
 import React from "react";
-import { SortOrder, SortProperties, Project } from "../constants";
+import { SortOrder, SortProperties, Project, PROXY } from "../constants";
 import axios from "axios";
 
 interface ContextState {
@@ -67,12 +67,12 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
       const formData = new FormData();
       if (typeof data.productImg === "object" && data.productImg !== null) {
         formData.append("productImg", data.productImg);
-        axios.post("/uploadImage", formData);
+        axios.post(`${PROXY}/uploadImage`, formData);
         const addedImgPath = {
           ...data,
           productImg: `/uploads/${data.productImg?.name.replace(/\s/g, "")}`,
         };
-        axios.post("/api/items/new", addedImgPath);
+        axios.post(`${PROXY}/api/items/new`, addedImgPath);
       }
     } catch (error) {
       console.error("Error adding item", error);
@@ -88,15 +88,14 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
       const formData = new FormData();
       if (typeof data.productImg === "object" && data.productImg !== null) {
         formData.append("productImg", data.productImg);
-       await axios.post("/uploadImage", formData);
+       await axios.post(`${PROXY}/uploadImage`, formData);
         const addedImgPath = {
           ...data,
           productImg: `/uploads/${data.productImg?.name.replace(/\s/g, "")}`,
         };
-        console.log("data za slanje", addedImgPath);
-        await axios.post(`/api/items/edit/${data.id}`, addedImgPath);
+        await axios.post(`${PROXY}/api/items/edit/${data.id}`, addedImgPath);
       }else if(typeof data.productImg === "string") {
-        await axios.post(`/api/items/edit/${data.id}`, data)
+        await axios.post(`${PROXY}/api/items/edit/${data.id}`, data)
       }
     } catch (error) {
       console.error("Error editing item", error);
@@ -110,8 +109,8 @@ function ContextProvider(props: React.PropsWithChildren<{}>) {
   const removeProject = async (data: Project | null) => {
     const productImg = data?.productImg as string;
     try {
-      await axios.delete(`/api/items/delete/${data?.id}`);
-      await axios.delete(`/deleteImage/${productImg.replace('/uploads/', '')}`);
+      await axios.delete(`${PROXY}/api/items/delete/${data?.id}`);
+      await axios.delete(`${PROXY}/deleteImage/${productImg.replace('/uploads/', '')}`);
     } catch (error) {
       console.error("Error deleting item", error);
     }

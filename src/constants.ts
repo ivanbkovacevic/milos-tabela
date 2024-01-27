@@ -99,3 +99,5 @@ export const NUM_OF_ROWS_BTNS = [
     numOfRows: 20,
   },
 ];
+
+export const PROXY = "http://localhost:5000"

@@ -43,7 +43,6 @@ const FormProject: React.FC<FormProps> = ({ formAction }) => {
     id: "0",
   };
   const handleFormSubmited = (values: Project, { resetForm }: any) => {
-    console.log('values to submit', values)
     const productImg = values.productImg === null ? '/uploads/noImg.png' : values.productImg;
     if (formAction === PopUpVariant.ADD_NEW_PROJECT) {
       addNewProject({...values, id: uuidv4(), productImg});

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../../context/context";
 import { ContextUI } from "../../context/contextUI";
-import { Project, PopUpVariant } from "../../constants";
+import { Project, PopUpVariant, PROXY } from "../../constants";
 import style from "./TableRows.module.scss";
 import ControlledPopup from "../../ControledPopUp/ControledPopUp";
 
@@ -49,8 +49,8 @@ const TableRowsProjects: React.FC<TableRowsProps> = ({ data }) => {
         <div className={style.imgWrapper}>
           {(typeof(data.productImg) !== 'object' && data.productImg !== null) && 
           <>
-          <img src={data.productImg} alt={data.productImg} />
-          <ControlledPopup src={data.productImg} alt={data.productImg} />
+          <img src={`${PROXY}${data.productImg}`} alt={`${PROXY}${data.productImg}`} />
+          <ControlledPopup src={`${PROXY}${data.productImg}`} alt={`${PROXY}${data.productImg}`} />
           </>
           }
         </div>
